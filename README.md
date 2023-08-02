@@ -114,3 +114,7 @@ root.render(
   </React.StrictMode>
 );
 ```
+
+## create-react-app 을 이용한 React Projection 생성
+
+`npx create-react-app [project]`

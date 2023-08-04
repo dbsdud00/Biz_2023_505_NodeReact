@@ -33,6 +33,10 @@
   cursor: not-allowed;
   background-color: #ddd;
 }
+.todo .input button.update {
+  background-color: #634bd1;
+  color: white;
+}
 .todo .item {
   display: flex;
   border-top: 1px solid #ddd;

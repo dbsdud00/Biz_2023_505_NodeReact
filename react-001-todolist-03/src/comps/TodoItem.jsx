@@ -19,8 +19,8 @@ const TodoItem = (props) => {
         &times;
       </div>
       <div className="sdate">
-        <div>{props.item.sdate}</div>
-        <div>{props.item.stime}</div>
+        <div>{item.sdate}</div>
+        <div>{item.stime}</div>
       </div>
       <div
         className={props.item.complete ? "content line" : "content"}
@@ -28,7 +28,7 @@ const TodoItem = (props) => {
           contentClickHandler(e, item.id);
         }}
       >
-        {props.item.content}
+        {item.content}
       </div>
       <div className="complete" onClick={(e) => compClickHandler(e, item.id)}>
         &#x2713;

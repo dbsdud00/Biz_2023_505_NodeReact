@@ -1,0 +1,23 @@
+.Arith {
+  height: 70vh;
+}
+.Arith h3 {
+  color: white;
+  border-top: 1px solid #fff;
+  padding: 20px 30px;
+  display: inline-block;
+}
+.Arith > div {
+  padding: 20px;
+  background-color: #282c34;
+}
+.Arith div div {
+  padding: 5px 8px;
+  margin: 10px;
+  color: white;
+}
+.ArithInput {
+  border-top: 1px solid #ffffff;
+  width: auto;
+  margin: 0 200px;
+}

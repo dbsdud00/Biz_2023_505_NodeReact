@@ -1,10 +1,18 @@
+@font-face {
+  font-family: "TTWanjudaedunsancheB";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2304-2@1.0/TTWanjudaedunsancheB.woff2")
+    format("woff2");
+  font-weight: 700;
+  font-style: normal;
+}
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 body {
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  font: 16px "TTWanjudaedunsancheB", "Lucida Grande", Helvetica, Arial,
+    sans-serif;
 }
 header.main {
   padding: 1.2rem;
@@ -12,14 +20,19 @@ header.main {
   text-align: center;
 }
 nav.main {
-  background-color: #bcbcbc;
+  background-color: #979797;
 }
 nav.main ul {
   list-style: none;
   display: flex;
 }
 nav.main li {
+  color: white;
+  font-weight: bold;
   padding: 12px 16px;
+}
+nav.main li:nth-of-type(4) {
+  margin-left: auto;
 }
 nav.main li:hover {
   background-color: #777;

@@ -1,0 +1,101 @@
+div.bbs.input {
+  border: 1px solid #ddd;
+  border-radius: 15px;
+  padding: 16px;
+  margin: 10px auto;
+  width: 60vw;
+  background-color: #e3f2ff;
+}
+div.bbs.input div {
+  width: 90%;
+  padding: 3px;
+  margin: 3px;
+  display: flex;
+
+  /* border: 1px solid #00ffcc; */
+}
+div.bbs.input div.image_box {
+  flex-direction: column;
+}
+div.bbs.input label,
+div.bbs.input input {
+  padding: 8px;
+}
+div.bbs.input label {
+  flex: 1;
+  text-align: right;
+  margin-right: 10px;
+  color: #6e7eb8;
+  font-weight: bold;
+  background-color: #e3f2ff;
+}
+div.bbs.input input {
+  flex: 3;
+  border: 1px solid #cacaca;
+  border-radius: 10px;
+  outline: none;
+}
+div.bbs.input input:hover {
+  background-color: #ddd;
+}
+div.bbs.input input:focus {
+  background-color: #cacaca;
+}
+/*
+div.bbs.input div 속성에 display 를 flex 로 적용하였더니
+내부의 전체 div 가 flex 가 되고
+flex 가 된 box 는 text-align:right 가 적용되지 안흔다.
+이때는 display 를 block 으로 재설정하거나
+justify-content 를 right 로 지정하면 된다.
+*/
+div.bbs.button {
+  justify-content: right;
+  border: none;
+  text-align: right;
+}
+button.bbs.input {
+  border: 1px solid #cacaca;
+  background-color: #fff;
+  padding: 5px 8px;
+  border-radius: 10px;
+  font-weight: bold;
+  color: #444444;
+}
+button.bbs.input:hover {
+  box-shadow: 2px 2px 2px rgb(198, 198, 198);
+  background-color: #6e7eb8;
+  color: white;
+}
+label[for="b_image"],
+label[for="b_images"] {
+  color: white !important;
+  cursor: pointer;
+  text-align: center !important;
+  margin-right: 0 !important;
+}
+label[for="b_image"]:hover,
+label[for="b_images"]:hover {
+  opacity: 0.7;
+}
+label[for="b_image"] {
+  background-color: #6aa8ba !important;
+  /* border: 1px solid #000; */
+}
+label[for="b_images"] {
+  background-color: #6a8bba !important;
+  color: white !important;
+  /* border: 1px solid #000; */
+}
+input[name="b_image"],
+input[name="b_images"] {
+  display: none;
+}
+div.image.gallery {
+  display: flex;
+  width: 100%;
+  flex-wrap: wrap;
+}
+div.image.gallery img {
+  border: none;
+  margin: 8px;
+}

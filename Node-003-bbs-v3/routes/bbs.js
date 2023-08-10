@@ -34,9 +34,7 @@ const Hello = {
 const storageOption = {
   filename: (req, file, cb) => {
     const originName = file.originalname;
-    const filePrix = `${Date.now()}-${Math.round(
-      Math.random() * 100000
-    )}`;
+    const filePrix = `${Date.now()}-${Math.round(Math.random() * 100000)}`;
     const fileName = `${filePrix}-${originName}`;
     console.log(fileName);
     cb(null, fileName);
@@ -58,33 +56,34 @@ router.get("/", async (req, res) => {
   res.json(Hello);
 });
 
-router.post(
-  "/insert",
-  uploadMiddleWare.array("b_images"),
-  async (req, res) => {
-    const body = req.body;
-    // multer MiddleWare 가 파일 관련 데이터를 필터링하고, 처리한 후
-    // 관련정보를 req.file 객체에 담아준다
-    const files = req.files;
-    const bbsDto = JSON.parse(body.bbs);
-    console.log("body ", files, bbsDto);
+router.post("/insert", uploadMiddleWare.array("b_images"), async (req, res) => {
+  const body = req.body;
+  // multer MiddleWare 가 파일 관련 데이터를 필터링하고, 처리한 후
+  // 관련정보를 req.file 객체에 담아준다
+  const files = req.files;
+  const bbsDto = JSON.parse(body.bbs);
+  // console.log("body ", files, bbsDto);
 
-    // files 이미지들 중에서 대표이미지는 첫번째 이미지 이다
-    bbsDto.b_image = files[0].filename;
-    bbsDto.b_origin_image = files[0].originalname;
-    const result = await BBS.create(bbsDto);
+  // files 이미지들 중에서 대표이미지는 첫번째 이미지 이다
+  bbsDto.b_image = files[0]?.filename;
+  bbsDto.b_origin_image = files[0]?.originalname;
 
-    // 이미지 정보 생성 : 대표이지를 제외한 나머지만
-    // tbl_files 에 저장하기
-    for (let i = 1; i < files.length; i++) {
-      const fileDto = {};
-      fileDto.f_image = files[i].filename;
-      fileDto.f_origin_image = files[i].originalname;
-      fileDto.f_bseq = result.b_seq;
-      await FILES.create(fileDto);
-    }
-    res.send("OK");
+  const result = await BBS.create(bbsDto);
+
+  // 이미지 정보 생성 : 대표이지를 제외한 나머지만
+  // tbl_files 에 저장하기
+  for (let i = 1; i < files.length; i++) {
+    const fileDto = {};
+    fileDto.f_image = files[i].filename;
+    fileDto.f_origin_image = files[i].originalname;
+    fileDto.f_bseq = result.b_seq;
+    await FILES.create(fileDto);
   }
-);
-
+  res.send("OK");
+});
+router.get("/list", async (req, res) => {
+  const bbsList = await BBS.findAll();
+  console.log(bbsList);
+  return res.json(bbsList);
+});
 export default router;

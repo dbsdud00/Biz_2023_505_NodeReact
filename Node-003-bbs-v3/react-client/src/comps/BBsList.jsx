@@ -1,6 +1,7 @@
-import { useEffect } from "react";
+import { useState } from "react";
 import css from "../css/BBsList.module.css";
 import { useBBsContext } from "../provider/BBsProvider";
+import ImageModalWindow from "../custComps/ImageModalWindow";
 
 const SampleData = [
   { b_seq: 0, b_nickname: "홍길동", b_title: "활빈당" },
@@ -10,13 +11,48 @@ const SampleData = [
   { b_seq: 4, b_nickname: "장녹수", b_title: "여걸" },
 ];
 const BBsList = () => {
+  const [modal, setModal] = useState({
+    imgSrc: "",
+    imgName: "",
+    modalState: false,
+  });
   const { bbsList, setBbsList } = useBBsContext();
+  const imageView = (imgSrc, imgName) => {
+    // document.createElement("img")
+    let imageWin = new Image();
+    imageWin = window.open("", "", "width=500px, height=500px");
+    imageWin.document.write("<html><body style='margin:0' >");
+    imageWin.document.write(`<img src='${imgSrc}' width='100%' />`);
+    imageWin.document.write("</body></html>");
+    imageWin.document.title = imgName;
+  };
+  const itemOnclickHandler = (e) => {
+    const target = e.target;
+    const tagName = target.tagName;
+    if (tagName === "TD") {
+      const seq = target.closest("TR").dataset.seq;
+      alert(`선택한 아이템 ${seq}`);
+    } else if (tagName === "IMG") {
+      // alert(target.src, target.alt);
+      // imageView(target.src, target.alt);
+      setModal({
+        ...modal,
+        imgSrc: target.src,
+        imgName: target.alt,
+        modalState: true,
+      });
+    }
+  };
   const bbsItems = bbsList.map((bbs) => {
     return (
       <tr key={bbs.b_seq} data-seq={bbs.b_seq}>
         <td>{bbs.b_seq}</td>
         <td>
-          <img src={`/static/upload/${bbs.b_image}`} width="50px" />
+          <img
+            src={`/static/upload/${bbs.b_image}`}
+            width="50px"
+            alt={bbs.b_origin_image}
+          />
           <span>{bbs.b_nickname} </span>
         </td>
         <td>{bbs.b_title}</td>
@@ -42,8 +78,9 @@ const BBsList = () => {
             <th>조회수</th>
           </tr>
         </thead>
-        <tbody>{bbsItems}</tbody>
+        <tbody onClick={itemOnclickHandler}>{bbsItems}</tbody>
       </table>
+      <ImageModalWindow modal={modal} setModal={setModal} />
     </>
   );
 };

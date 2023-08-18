@@ -1,16 +1,19 @@
-import { Button, Form, InputDiv } from "../styled/BBsStyled";
-import { BBsDto as bbsData, BBsList as bbsListData } from "../data/BBsData";
-import { useState, useEffect } from "react";
-const BBsInput = () => {
-  const [bbsDto, setBbsDto] = useState(bbsData);
-  let inputOnChange = (e) => {
+import { useRouter, Outlet, NavLink } from "react-router-dom";
+import { InputDiv } from "../styled/BBsStyled";
+import { Button } from "../styled/MyButton";
+
+const BBsInput = ({ bbsDto, setBbsDto, bbsInput }) => {
+  const inputOnChange = (e) => {
     const { name, value } = e.target;
     setBbsDto({ ...bbsDto, [name]: value });
   };
+  const btnOnClickHandler = () => {
+    bbsInput();
+  };
   return (
-    <Form>
+    <>
       <InputDiv>
-        <label>작성자</label>
+        <label htmlFor="">작성자</label>
         <input
           type="text"
           value={bbsDto.bWriter}
@@ -36,8 +39,10 @@ const BBsInput = () => {
           onChange={inputOnChange}
         ></textarea>
       </InputDiv>
-      <Button type="button">저장</Button>
-    </Form>
+      <Button type="button" onClick={btnOnClickHandler}>
+        저장
+      </Button>
+    </>
   );
 };
 export default BBsInput;

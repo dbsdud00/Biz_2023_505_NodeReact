@@ -26,22 +26,15 @@ export const Form = styled.form`
  * ${({bgColor})=>(bgColor ? color:"red")} 에서
  * {bgColor}: 부모로부터 받은 props.bgColor 를 전개한 변수
  */
-export const Button = styled.button`
-  border: 0;
-  outline: none;
-  padding: 12px 16px;
-  color: ${({ color }) => (color ? color : "white")};
-  background-color: ${({ bgColor }) => (bgColor ? bgColor : "blue")};
-  margin: 12px;
-  &:hover {
-    box-shadow: 1px 1px 1px 1px #333;
-    cursor: pointer;
-  }
-`;
+
 export const InputDiv = styled.div`
   width: 90%;
   display: flex;
-  flex-direction: column;
+  & label,
+  input {
+    margin: 5px;
+    padding: 8px;
+  }
   & label {
     flex: 1;
     text-align: right;

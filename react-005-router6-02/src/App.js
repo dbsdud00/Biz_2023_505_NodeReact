@@ -1,9 +1,20 @@
 import logo from "./logo.svg";
 import BBsMain from "./comps/BBsMain";
 import { useRoutes, Outlet, useNavigate } from "react-router-dom";
-import { Button } from "./styled/BBsStyled";
+import { Button } from "./styled/MyButton";
 import "./css/App.css";
 
+const AppBody = () => {
+  const navigate = useNavigate();
+  return (
+    <div className="App">
+      <header className="App-header" onClick={() => navigate("/")}>
+        <img src={logo} className="App-logo" alt="logo" />
+      </header>
+      <Outlet />
+    </div>
+  );
+};
 function App() {
   // useNavigate hooks 함수를 사용하여 navigate 객체 생성
   /**
@@ -23,16 +34,6 @@ function App() {
    * 특히 useRedirect 의 경우 별도로 Navigate component 를 통하여 실행할 수도 있다.
    */
   const navigate = useNavigate();
-  const AppBody = () => {
-    return (
-      <div className="App">
-        <header className="App-header" onClick={() => navigate("/")}>
-          <img src={logo} className="App-logo" alt="logo" />
-        </header>
-        <Outlet />
-      </div>
-    );
-  };
   const appRouter = useRoutes([
     {
       path: "/",

@@ -1,0 +1,14 @@
+div.input {
+  width: 50%;
+  display: flex;
+}
+div.input_text {
+  display: flex;
+  flex-direction: column;
+}
+div.input_text input {
+  margin: 10px;
+}
+div.input_text textarea {
+  margin: 10px;
+}

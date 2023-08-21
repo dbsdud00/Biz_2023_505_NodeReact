@@ -39,7 +39,9 @@ const BucketMain = () => {
         bDate: moment().format("YYYY[-]MM[-]DD"),
         bTime: moment().format("HH[-]mm[-]ss"),
       };
+      console.log("새로만든 버켓리스트", bucket);
       setBucket({ ...newBKDto });
+      setImage(bucket.bImage);
       setBucketList([...bucketList, newBKDto]);
     } else {
       console.log("id 있음");

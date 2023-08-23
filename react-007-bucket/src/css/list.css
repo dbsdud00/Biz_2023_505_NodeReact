@@ -1,0 +1,7 @@
+li a.true {
+  text-decoration: none;
+  background-color: #fff;
+}
+li a.false {
+  text-decoration: line-through;
+}

@@ -1,7 +1,9 @@
+import { Outlet, redirect } from "react-router-dom";
+import { getBucketList, newBucket } from "../modules/bucketFetch";
 import styled from "styled-components";
 import BucketSearch from "./BucketSearch";
-import { useLoaderData, NavLink, Outlet } from "react-router-dom";
-import { getBucketList, newBucket } from "../modules/bucketFetch";
+import BucketList from "./BucketList";
+import Ham from "./Ham";
 const ASideBar = styled.aside`
   width: 22rem;
   border-right: solid 2px #ccc;
@@ -55,26 +57,19 @@ export const mainLoader = async () => {
 };
 export const mainAction = async () => {
   const bucket = await newBucket();
-  return "";
+  return redirect(`/content/${bucket.id}`);
 };
 const BucketMain = () => {
-  const { bucketList } = useLoaderData();
-  const bucketItemListView = bucketList.map((item) => {
-    return (
-      <li>
-        <NavLink to={`content/${item.id}`}>{item.bucket}</NavLink>
-      </li>
-    );
-  });
   return (
     <>
       <ASideBar>
         <BucketSearch />
-        <UL>{bucketItemListView}</UL>
+        <BucketList />
       </ASideBar>
       <div>
         <Outlet />
       </div>
+      <Ham />
     </>
   );
 };

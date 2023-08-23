@@ -2,7 +2,12 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import BucketMain, { mainLoader, mainAction } from "../comps/BucketMain";
 // import { bucketLoader, bucketAction } from "../modules/routerAction";
 
-import BucketUpdate, { updateLoader } from "../comps/BucketUpdate";
+import BucketUpdate, { updateAction } from "../comps/BucketUpdate";
+import BucketDetail, {
+  detailLoader,
+  deleteAction,
+  completeAction,
+} from "../comps/BucketDetail";
 
 /**
  * RouterProvider 에 연결하여 각종 Routing 을 수행하는 설정만들기
@@ -16,7 +21,25 @@ const router = createBrowserRouter([
     loader: mainLoader,
     action: mainAction,
     children: [
-      { path: "content/:id", element: <BucketUpdate />, loader: updateLoader },
+      {
+        path: "content/:id",
+        element: <BucketDetail />,
+        loader: detailLoader,
+      },
+      {
+        path: "content/:id/edit",
+        element: <BucketUpdate />,
+        loader: detailLoader,
+        action: updateAction,
+      },
+      {
+        path: "content/:id/delete",
+        action: deleteAction,
+      },
+      {
+        path: "content/:id/complete",
+        action: completeAction,
+      },
     ],
   },
 ]);

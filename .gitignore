@@ -61,3 +61,10 @@ typings/
 .env
 .metadata/
 RemoteSystemsTempFiles/
+
+
+# mySec File
+firebaseConfig.js
+
+# ETC
+.bak

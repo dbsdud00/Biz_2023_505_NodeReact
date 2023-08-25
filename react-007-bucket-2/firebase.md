@@ -35,3 +35,25 @@ firebase firebase-tools login
 firebase firebase-tools init
 firebase firebase-tools deploy
 ```
+
+## firebase 에 배포하기
+
+```bash
+firebase login
+npm run build
+firebase init
+  # () Hosting:Configure files ... 선택
+  # Use an existing project 선택
+  # 배포할 프로젝트 선택
+  # public 폴더 입력 : build
+  # 기타 나머지는 모두 N
+
+firebase deploy
+```
+
+- 파일을 수정 후 배포할 때
+
+```bash
+npm run build
+firebase deploy
+```
